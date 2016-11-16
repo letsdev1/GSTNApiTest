@@ -1,0 +1,16 @@
+c:\users\vikas\documents\visual studio 2013\Projects\GSTN_TestAPI\GSTN_TestAPI\bin\Debug\GSTN_TestAPI.exe.config
+C:\Users\Vikas\documents\visual studio 2013\Projects\GSTN_TestAPI\GSTN_TestAPI\bin\Debug\GSTN_TestAPI.exe
+C:\Users\Vikas\documents\visual studio 2013\Projects\GSTN_TestAPI\GSTN_TestAPI\bin\Debug\GSTN_TestAPI.pdb
+C:\Users\Vikas\documents\visual studio 2013\Projects\GSTN_TestAPI\GSTN_TestAPI\obj\Debug\GSTN_TestAPI.csprojResolveAssemblyReference.cache
+C:\Users\Vikas\documents\visual studio 2013\Projects\GSTN_TestAPI\GSTN_TestAPI\obj\Debug\GSTN_TestAPI.exe
+C:\Users\Vikas\documents\visual studio 2013\Projects\GSTN_TestAPI\GSTN_TestAPI\obj\Debug\GSTN_TestAPI.pdb
+C:\Users\Vikas\documents\visual studio 2013\Projects\GSTN_TestAPI\GSTN_TestAPI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Vikas\documents\visual studio 2013\Projects\GSTN_TestAPI\GSTN_TestAPI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Vikas\Documents\Visual Studio 2015\Projects\GSTN_TestAPI\GSTN_TestAPI\bin\Debug\GSTN_TestAPI.exe.config
+C:\Users\Vikas\Documents\Visual Studio 2015\Projects\GSTN_TestAPI\GSTN_TestAPI\obj\Debug\GSTN_TestAPI.exe
+C:\Users\Vikas\Documents\Visual Studio 2015\Projects\GSTN_TestAPI\GSTN_TestAPI\obj\Debug\GSTN_TestAPI.pdb
+C:\Users\Vikas\Documents\Visual Studio 2015\Projects\GSTN_TestAPI\GSTN_TestAPI\bin\Debug\GSTN_TestAPI.exe
+C:\Users\Vikas\Documents\Visual Studio 2015\Projects\GSTN_TestAPI\GSTN_TestAPI\bin\Debug\GSTN_TestAPI.pdb
+C:\Users\Vikas\Documents\Visual Studio 2015\Projects\GSTN_TestAPI\GSTN_TestAPI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Vikas\Documents\Visual Studio 2015\Projects\GSTN_TestAPI\GSTN_TestAPI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Vikas\Documents\Visual Studio 2015\Projects\GSTN_TestAPI\GSTN_TestAPI\obj\Debug\GSTN_TestAPI.csprojResolveAssemblyReference.cache
