@@ -47,7 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AesExample.cs" />
+    <Compile Include="ApiBuilder.cs" />
     <Compile Include="CEncryption.cs" />
+    <Compile Include="Helper\Constants.cs" />
+    <Compile Include="Helper\Context.cs" />
+    <Compile Include="Helper\JsonNames.cs" />
+    <Compile Include="Helper\JsonParser.cs" />
+    <Compile Include="Helper\Logger.cs" />
+    <Compile Include="Helper\OutputFormat\Output_OTP.cs" />
+    <Compile Include="Helper\URLs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -55,6 +64,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
