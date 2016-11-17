@@ -11,5 +11,7 @@ namespace GSTN_TestAPI.Helper
     {
         public static string AppKey;
         public static string LoggedUser;
+        public static byte[] Decipher;
+        public static string AuthToken;
     }
 }

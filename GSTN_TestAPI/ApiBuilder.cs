@@ -24,7 +24,11 @@ namespace GSTN_TestAPI
         public void AuthenticationRequest(string OTP)
         {
             string result = GenericAuthenticationRequest(OTP); //OTP and Authentication is same
+            Output_Auth auth = JsonParser.ParseAuth(result);
+            byte[] decryptedKey = encryption.Decrypt(auth.SEK, Constants.appKey);
 
+            Context.Decipher = decryptedKey;
+            Context.AuthToken = auth.Auth_Token;
         }
 
         /// <summary>
@@ -93,7 +97,7 @@ namespace GSTN_TestAPI
 
 
 
-            string url = domain + Constants.url_authentication_taxPayer;
+            string url = domain + Constants.URL_Authentication_TaxPayer;
             //client.Headers[HttpRequestHeader.Authorization] = "token here";
             var result = client.UploadString(url, "Post", requestPayload);
             

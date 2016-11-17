@@ -20,37 +20,6 @@ namespace GSTN_TestAPI
         }
 
 
-        public byte[] AES_Encrypt(byte[] bytesToBeEncrypted, byte[] passwordBytes)
-        {
-            byte[] encryptedBytes = null;
-
-            // Set your salt here, change it to meet your flavor:
-            // The salt bytes must be at least 8 bytes.
-            byte[] saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-            
-            using (MemoryStream ms = new MemoryStream())
-            {
-                
-                using (AesCryptoServiceProvider AES = new AesCryptoServiceProvider())
-                {
-                    AES.Key = passwordBytes;
-                    AES.BlockSize = 128;
-                    AES.Mode = CipherMode.ECB;
-                    AES.Padding = PaddingMode.PKCS7;
-
-                    using (var cs = new CryptoStream(ms, AES.CreateEncryptor(), CryptoStreamMode.Write))
-                    {
-                        cs.Write(bytesToBeEncrypted, 0, bytesToBeEncrypted.Length);
-                        cs.Close();
-                    }
-                    encryptedBytes = ms.ToArray();
-                }
-            }
-
-            return encryptedBytes;
-        }
-
-
 
         private string HMAC_Encrypt(string message, string secret)
         {
@@ -67,47 +36,19 @@ namespace GSTN_TestAPI
             
         }
 
-        public byte[] AES_Decrypt(byte[] bytesToBeDecrypted, byte[] passwordBytes)
-        {
-            byte[] decryptedBytes = null;
-
-            // Set your salt here, change it to meet your flavor:
-            // The salt bytes must be at least 8 bytes.
-            byte[] saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-
-            using (MemoryStream ms = new MemoryStream())
-            {
-                using (RijndaelManaged AES = new RijndaelManaged())
-                {
-                    AES.Key = passwordBytes;
-                    AES.BlockSize = 128;
-                    AES.Mode = CipherMode.ECB;
-                    AES.Padding = PaddingMode.PKCS7;
-
-                    using (var cs = new CryptoStream(ms, AES.CreateDecryptor(), CryptoStreamMode.Write))
-                    {
-                        cs.Write(bytesToBeDecrypted, 0, bytesToBeDecrypted.Length);
-                        cs.Close();
-                    }
-                    decryptedBytes = ms.ToArray();
-                }
-            }
-
-            return decryptedBytes;
-        }
 
         public string Encrypt(string plainText, string key)
         {
             byte[] dataToEncrypt = UTF8Encoding.UTF8.GetBytes(plainText);
+
             AesManaged tdes = new AesManaged();
+
             tdes.KeySize = 256;
             tdes.BlockSize = 128;
-            //if (tdes.ValidKeySize(key.Length))
-            //{
-            //tdes.Key = Convert.FromBase64String(key);
             tdes.Key = Encoding.ASCII.GetBytes(key);
             tdes.Mode = CipherMode.ECB;
             tdes.Padding = PaddingMode.PKCS7;
+
             ICryptoTransform crypt = tdes.CreateEncryptor();
             byte[] cipher = crypt.TransformFinalBlock(dataToEncrypt, 0, dataToEncrypt.Length);
             tdes.Clear();
@@ -115,16 +56,42 @@ namespace GSTN_TestAPI
           
         }
 
-
-
-
-        public string EncryptText(string input, byte[] passwordBytes)
+        public byte[] Decrypt(string encryptedText, string key)
         {
-            byte[] bytesToBeEncrypted = Encoding.UTF8.GetBytes(input);
-            //passwordBytes = HMACSHA256.Create().ComputeHash(passwordBytes);
-            byte[] bytesEncrypted = AES_Encrypt(bytesToBeEncrypted, passwordBytes);
-            string result = Convert.ToBase64String(bytesEncrypted);
-            return result;
+            byte[] dataToDecrypt = Convert.FromBase64String(encryptedText);
+
+            AesManaged tdes = new AesManaged();
+
+            tdes.KeySize = 256;
+            tdes.BlockSize = 128;
+            tdes.Key = Encoding.ASCII.GetBytes(key);
+            tdes.Mode = CipherMode.ECB;
+            tdes.Padding = PaddingMode.PKCS7;
+
+            ICryptoTransform decrypt = tdes.CreateDecryptor();
+            byte[] deCipher = decrypt.TransformFinalBlock(dataToDecrypt, 0, dataToDecrypt.Length);
+            tdes.Clear();
+
+            return deCipher;
+        }
+
+        public byte[] Decrypt(string encryptedText, byte [] keys)
+        {
+            byte[] dataToDecrypt = Convert.FromBase64String(encryptedText);
+
+            AesManaged tdes = new AesManaged();
+
+            tdes.KeySize = 256;
+            tdes.BlockSize = 128;
+            tdes.Key = Encoding.ASCII.GetBytes(key);
+            tdes.Mode = CipherMode.ECB;
+            tdes.Padding = PaddingMode.PKCS7;
+
+            ICryptoTransform decrypt = tdes.CreateDecryptor();
+            byte[] deCipher = decrypt.TransformFinalBlock(dataToDecrypt, 0, dataToDecrypt.Length);
+            tdes.Clear();
+
+            return deCipher;
         }
 
 
@@ -142,20 +109,6 @@ namespace GSTN_TestAPI
 
         }
 
-
-        public string DecryptText(string input, string password)
-        {
-            // Get the bytes of the string
-            byte[] bytesToBeDecrypted = Convert.FromBase64String(input);
-            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-            passwordBytes = SHA256.Create().ComputeHash(passwordBytes);
-
-            byte[] bytesDecrypted = AES_Decrypt(bytesToBeDecrypted, passwordBytes);
-
-            string result = Encoding.UTF8.GetString(bytesDecrypted);
-
-            return result;
-        }
 
     }
 

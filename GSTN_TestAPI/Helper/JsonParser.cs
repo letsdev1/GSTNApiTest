@@ -26,9 +26,25 @@ namespace GSTN_TestAPI.Helper
             }
             else
             {
+                if (Constants.Sandbox)
+                {
+                    //since it is the Sandbox, let us just process the request for now.
+                    //who knows their API is down, again :)
+                    return output.OTP;
+                }
+
                 //error do nothing
             }
+
             return ""; //failed
         }
+
+
+        public static Output_Auth ParseAuth(string response)
+        {
+            var output = json.JsonConvert.DeserializeObject<Output_Auth>(response);
+            return output;
+        }
+
     }
 }

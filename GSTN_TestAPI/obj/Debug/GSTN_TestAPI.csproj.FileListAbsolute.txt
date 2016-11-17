@@ -21,3 +21,11 @@ C:\Users\Vikas\Source\Repos\GSTNApiTest\GSTN_TestAPI\bin\Debug\GSTN_TestAPI.exe
 C:\Users\Vikas\Source\Repos\GSTNApiTest\GSTN_TestAPI\bin\Debug\GSTN_TestAPI.pdb
 C:\Users\Vikas\Source\Repos\GSTNApiTest\GSTN_TestAPI\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Vikas\Source\Repos\GSTNApiTest\GSTN_TestAPI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Vikas\Dropbox\Projects\Ongoing\Other\GSTN\GSTNApiTest\GSTN_TestAPI\bin\Debug\GSTN_TestAPI.exe.config
+C:\Users\Vikas\Dropbox\Projects\Ongoing\Other\GSTN\GSTNApiTest\GSTN_TestAPI\obj\Debug\GSTN_TestAPI.exe
+C:\Users\Vikas\Dropbox\Projects\Ongoing\Other\GSTN\GSTNApiTest\GSTN_TestAPI\obj\Debug\GSTN_TestAPI.pdb
+C:\Users\Vikas\Dropbox\Projects\Ongoing\Other\GSTN\GSTNApiTest\GSTN_TestAPI\obj\Debug\GSTN_TestAPI.csprojResolveAssemblyReference.cache
+C:\Users\Vikas\Dropbox\Projects\Ongoing\Other\GSTN\GSTNApiTest\GSTN_TestAPI\bin\Debug\GSTN_TestAPI.exe
+C:\Users\Vikas\Dropbox\Projects\Ongoing\Other\GSTN\GSTNApiTest\GSTN_TestAPI\bin\Debug\GSTN_TestAPI.pdb
+C:\Users\Vikas\Dropbox\Projects\Ongoing\Other\GSTN\GSTNApiTest\GSTN_TestAPI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Vikas\Dropbox\Projects\Ongoing\Other\GSTN\GSTNApiTest\GSTN_TestAPI\bin\Debug\Newtonsoft.Json.xml

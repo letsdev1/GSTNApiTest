@@ -18,5 +18,14 @@ namespace GSTN_TestAPI.Helper
                 }
             }
         }
+
+        public static string GSTR1_B2BInvoices
+        {
+            get
+            {
+                return Domain + Constants.URL_GSTR1_B2BInvoices;
+            }
+        }
+
     }
 }
