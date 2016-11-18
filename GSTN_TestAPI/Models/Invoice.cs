@@ -10,7 +10,7 @@ namespace GSTN_API.Models
     {
         public string Flag { get; set; }
         public string ChkSum { get; set; }
-        public int? INum { get; set; }
+        public string INum { get; set; }
         public string IDT { get; set; }
         public double? Val { get; set; }
         public string POS { get; set; }

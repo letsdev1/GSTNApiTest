@@ -10,6 +10,7 @@ namespace GSTN_API.Helper
     public class Context
     {
         public static string AppKey;
+        public static byte[] AppKeyBytes;
         public static string AppKey_NormalEncryption;
         public static string LoggedUser;
         public static byte[] DecipherBytes;

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSTN_TestAPI", "GSTN_TestAPI\GSTN_TestAPI.csproj", "{02F9EF53-7832-41B6-B444-AFF5F062CC52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSTNAPI", "GSTN_TestAPI\GSTNAPI.csproj", "{02F9EF53-7832-41B6-B444-AFF5F062CC52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -18,6 +18,12 @@ namespace GSTN_API
             X509Certificate2 cert2 = new X509Certificate2(@"C:\Users\Vikas\Downloads\GSTN_PublicKey.cer");
             return cert2;
         }
+        public static X509Certificate2 getPublicKeyBase64()
+        {
+            RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
+            X509Certificate2 cert2 = new X509Certificate2(@"C:\Users\Vikas\Downloads\gstn_public_key_base64.cer");
+            return cert2;
+        }
 
 
 
@@ -46,8 +52,6 @@ namespace GSTN_API
         }
 
 
-
-
         public string Encrypt(string plainText, byte[] keyBytes)
         {
             byte[] dataToEncrypt = UTF8Encoding.UTF8.GetBytes(plainText);
@@ -64,7 +68,6 @@ namespace GSTN_API
             byte[] cipher = crypt.TransformFinalBlock(dataToEncrypt, 0, dataToEncrypt.Length);
             tdes.Clear();
             return Convert.ToBase64String(cipher, 0, cipher.Length);
-
         }
 
         public string Encrypt(string plainText, string key)
@@ -75,7 +78,7 @@ namespace GSTN_API
 
             tdes.KeySize = 256;
             tdes.BlockSize = 128;
-            tdes.Key = Encoding.ASCII.GetBytes(key);
+            tdes.Key = Encoding.UTF8.GetBytes(key);
             tdes.Mode = CipherMode.ECB;
             tdes.Padding = PaddingMode.PKCS7;
 
@@ -83,14 +86,29 @@ namespace GSTN_API
             byte[] cipher = crypt.TransformFinalBlock(dataToEncrypt, 0, dataToEncrypt.Length);
             tdes.Clear();
             return Convert.ToBase64String(cipher, 0, cipher.Length);
-          
+
+        }
+
+
+        public byte[] Encrypt(byte[] dataToEncrypt)
+        {
+            AesManaged tdes = new AesManaged();
+            tdes.KeySize = 256;
+            tdes.BlockSize = 128;
+            tdes.Mode = CipherMode.ECB;
+            tdes.Padding = PaddingMode.PKCS7;
+            tdes.Key = new byte[256];
+            ICryptoTransform crypt = tdes.CreateEncryptor();
+            byte[] cipher = crypt.TransformFinalBlock(dataToEncrypt, 0, dataToEncrypt.Length);
+
+            return cipher;
         }
 
         public byte[] Decrypt(string encryptedText, string key)
         {
 
             byte[] dataToDecrypt = Convert.FromBase64String(encryptedText);
-            byte[] keyBytes = Encoding.ASCII.GetBytes(key);
+            byte[] keyBytes = Encoding.UTF8.GetBytes(key);
 
             return Decrypt(dataToDecrypt, keyBytes);
             
@@ -122,19 +140,40 @@ namespace GSTN_API
         }
 
 
+
+
         public string EncryptTextWithPublicKey(string input)
+        {
+            byte[] bytesToBeEncrypted = Encoding.UTF8.GetBytes(input);
+            return EncryptTextWithPublicKey(bytesToBeEncrypted);
+            }
+
+        private static readonly byte[] Salt = new byte[] { 10, 20, 30, 40, 50, 60, 70, 80 };
+        public static byte[] CreateKey()
+        {
+
+            System.Security.Cryptography.AesCryptoServiceProvider crypto = new System.Security.Cryptography.AesCryptoServiceProvider();
+            crypto.KeySize = 256;
+            crypto.GenerateKey();
+            byte[] key = crypto.Key;
+            return key;
+        }
+
+        public string EncryptTextWithPublicKey(byte[] bytesToBeEncrypted)
         {
             X509Certificate2 certificate = getPublicKey();
             RSACryptoServiceProvider RSA = (RSACryptoServiceProvider)certificate.PublicKey.Key;
-           // RSA.KeySize = 256;
 
-            byte[] bytesToBeEncrypted = Encoding.UTF8.GetBytes(input);
             byte[] bytesEncrypted = RSA.Encrypt(bytesToBeEncrypted, false);
 
             string result = Convert.ToBase64String(bytesEncrypted);
             return result;
-
         }
+
+
+
+
+
 
 
     }

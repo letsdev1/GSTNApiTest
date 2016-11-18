@@ -19,21 +19,23 @@ namespace GSTN_API
         public APIBuilder()
         {
             Context.LoggedUser = Constants.testUser;
+            Context.AppKeyBytes = Encoding.UTF8.GetBytes(Constants.appKey); //CEncryption.CreateKey();
+
+
+
         }
 
         public void AuthenticationRequest(string OTP)
         {
+
             string result = GenericAuthenticationRequest(OTP); //OTP and Authentication is same
             Auth auth = JsonParser.ParseAuth(result);
 
-            Context.AppKey_NormalEncryption = Convert.ToBase64String(Encoding.ASCII.GetBytes(Constants.appKey));
-
-            //string decryptedAppKey = Convert.ToBase64String(encryption.Decrypt(Context.AppKey, Constants.appKey));
-
-            byte[] keyBytes = Convert.FromBase64String(Context.AppKey_NormalEncryption);
-            byte[] decryptedKey = encryption.Decrypt(auth.SEK, keyBytes);
+            byte[] decryptedKey = encryption.Decrypt(auth.SEK, Context.AppKeyBytes);
+            byte[] hidecipher = Convert.FromBase64String(Context.AppKey);
 
             string tryDecipher = System.Text.Encoding.UTF8.GetString(decryptedKey);
+
             Context.Decipher = tryDecipher;
             Context.DecipherBytes = decryptedKey;
             Context.AuthToken = auth.Auth_Token;
@@ -80,10 +82,10 @@ namespace GSTN_API
                 encryptedAppKey = Context.AppKey;
 
             Context.AppKey = encryptedAppKey;
-            
+            string id = Convert.ToBase64String(Context.AppKeyBytes);
 
             string action = string.IsNullOrEmpty(OTP) ? "OTPREQUEST" : "AUTHTOKEN";
-            string otpJson = string.IsNullOrEmpty(OTP) ? "" : ", \"" + JsonNames.OTP + "\":\"" + encryption.Encrypt(OTP, Constants.appKey) + "\"";
+            string otpJson = string.IsNullOrEmpty(OTP) ? "" : ", \"" + JsonNames.OTP + "\":\"" + encryption.Encrypt(OTP, Context.AppKeyBytes) + "\"";
 
             string requestPayload = "{\"" + JsonNames.Action + "\": \"" + action + "\"," +
                 "\"" + JsonNames.AppKey + "\": \"" + encryptedAppKey + "\"," +

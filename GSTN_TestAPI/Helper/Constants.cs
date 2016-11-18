@@ -17,7 +17,7 @@ namespace GSTN_API.Helper
 
         #region DefaultSandboxValues
         public const string testUser = "GSTNHelper";
-        public const string appKey = "9b0d686d-f4e3-4b49-a347-22440b8f";
+        public const string appKey = "837ey46d-ooi9-12s3-lo90-19ijuys5";
         public const string GSTIN = "25ABCDE1028F6Z4";
         #endregion
     }

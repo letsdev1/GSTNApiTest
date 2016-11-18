@@ -1,4 +1,5 @@
 ﻿using GSTN_API.Helper;
+using GSTN_API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,10 +39,9 @@ namespace GSTN_API.GSTRModules
             client.Headers.Add("username", Constants.testUser);
             string url = URLs.GSTR1_B2BInvoices;
             var result = client.UploadString(url, "PUT", encryptedPayload);
-
         }
 
-        public void PullB2bInvoices()
+        public WrapperB2B PullB2bInvoices()
         {
             WebClient client = new WebClient();
 
@@ -86,10 +86,18 @@ namespace GSTN_API.GSTRModules
                     //failed
 
                     Logger.GetLogger().LogException(new Exception("Failed B2B Request. Result is : " + result));
-                    return;
+                    return null;
                 }
+                
+                byte[] decryptREK = encryption.Decrypt(b2b.REK, Context.DecipherBytes);
+                byte[] jsonData = encryption.Decrypt(b2b.Data, decryptREK);
 
-                encryption.Decrypt(b2b.Data, Context.DecipherBytes);
+                string json = Encoding.UTF8.GetString(jsonData);
+                byte[] decodeJson = Convert.FromBase64String(json);
+
+                string finalJson = Encoding.UTF8.GetString(decodeJson);
+                WrapperB2B b2bs = Newtonsoft.Json.JsonConvert.DeserializeObject<WrapperB2B>(finalJson);
+                return b2bs;
 
             }
             catch (Exception ex)
@@ -97,15 +105,30 @@ namespace GSTN_API.GSTRModules
                 string s = ex.Message;
                 string trace = ex.StackTrace;
             }
-           
 
+            return null;
         }
     }
+
+    public class WrapperB2B
+    {
+        public List<B2BTransaction> B2B { get; set; }
+    }
+
+
 
     public class Output_B2B
     {
         public string Data { get; set;}
         public string Status_CD { get; set; }
+        public string REK
+        {
+            get;set;
+        }
+        public string HMAC
+        {
+            get;set;
+        }
     }
 
 }
