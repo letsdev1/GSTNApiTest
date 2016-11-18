@@ -1,0 +1,429 @@
+﻿emblem GST Developer Portal  Feedback
+Home
+API Overview
+API
+Releases Notes
+GSTR1 - Save GSTR1 data
+BACK TO API LIST
+API Overview
+
+This API is used to save entire GSTR1 invoices.
+
+See More
+PUThttps://<domain-name>/taxpayerapi/v0.1/returns/gstr1
+Content Type	appplication/json
+Encryption	Yes
+API Action	RETSAVE
+ Request Payload
+ {
+  "gstin": "25ABCDE1028F6Z4",
+  "fp": "062016",
+  "gt": 3782969.01,
+  "b2b": [
+    {
+      "ctin": "21ABCDE3180F8Z6",
+      "inv": [
+        {
+          "flag": "D",
+          "chksum": "AflJufPlFStqKBZ",
+          "inum": "98678",
+          "idt": "25-10-2016",
+          "val": 776522.02,
+          "pos": "01",
+          "rchrg": "N",
+          "pro_ass": "Y",
+          "itms": [
+            {
+              "num": 1,
+              "status": "A",
+              "ty": "S",
+              "hsn_sc": "S1991",
+              "txval": 6210.99,
+              "irt": 0,
+              "iamt": 0,
+              "crt": 37.4,
+              "camt": 8874614.44,
+              "srt": 33.41,
+              "samt": 5.68
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "b2ba": [
+    {
+      "ctin": "76ABCDE3548F4Z8",
+      "inv": [
+        {
+          "flag": "D",
+          "chksum": "AflJufPlFStqKBZ",
+          "inum": "27686",
+          "idt": "16-04-2016",
+          "val": 142244.71,
+          "pos": "01",
+          "rchrg": "N",
+          "onum": "S008400",
+          "odt": "03-01-2016",
+          "pro_ass": "Y",
+          "itms": [
+            {
+              "num": 1,
+              "status": "A",
+              "ty": "S",
+              "hsn_sc": "S8954",
+              "txval": 2475.25,
+              "irt": 0,
+              "iamt": 0,
+              "crt": 47.48,
+              "camt": 9308.11,
+              "srt": 26.01,
+              "samt": 825320713.13
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "b2cl": [
+    {
+      "state_cd": "23",
+      "inv": [
+        {
+          "flag": "D",
+          "chksum": "AflJufPlFStqKBZ",
+          "cname": "ABCD",
+          "inum": "92661",
+          "idt": "10-01-2016",
+          "val": 784586.33,
+          "pos": "01",
+          "pro_ass": "N",
+          "itms": [
+            {
+              "num": 1,
+              "ty": "S",
+              "hsn_sc": "S2469",
+              "txval": 4445.05,
+              "irt": 0,
+              "iamt": 97821.03,
+              "crt": 0,
+              "camt": 0,
+              "srt": 0,
+              "samt": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "b2cla": [
+    {
+      "state_cd": "7",
+      "inv": [
+        {
+          "flag": "D",
+          "chksum": "AflJufPlFStqKBZ",
+          "cname": "ABCD",
+          "inum": "63083",
+          "idt": "22-11-2016",
+          "val": 794258.24,
+          "pos": "01",
+          "rchrg": "N",
+          "pro_ass": "Y",
+          "onum": "31311",
+          "odt": "24-01-2016",
+          "itms": [
+            {
+              "num": 1,
+              "ty": "G",
+              "hsn_sc": "H936",
+              "txval": 9362.19,
+              "irt": 67.7,
+              "iamt": 7719.31,
+              "crt": 0,
+              "camt": 0,
+              "srt": 0,
+              "samt": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "b2cs": [
+    {
+      "flag": "D",
+      "chksum": "AflJufPlFStqKBZ",
+      "state_cd": "7",
+      "ty": "G",
+      "hsn_sc": "S1173",
+      "txval": 9595.33,
+      "irt": 0,
+      "iamt": 0,
+      "crt": 22,
+      "camt": 28.54,
+      "srt": 39.26,
+      "samt": 978922198.61,
+      "pro_ass": "Y"
+    }
+  ],
+  "b2csa": [
+    {
+      "flag": "D",
+      "chksum": "AflJufPlFStqKBZ",
+      "osupst_cd": "25",
+      "omon": "072016",
+      "oty": "S",
+      "ohsn_sc": "H605",
+      "state_cd": "12",
+      "ty": "S",
+      "hsn_sc": "H496",
+      "txval": 3522.09,
+      "irt": 0,
+      "iamt": 0,
+      "crt": 42.11,
+      "camt": 873759.6,
+      "srt": 91.43,
+      "samt": 9.03,
+      "pro_ass": "Y"
+    }
+  ],
+  "nil": {
+    "nil_supplies": [
+      {
+        "sply_ty": "IERB",
+        "nil_data": [
+          {
+            "nil_amt": 65587485.73,
+            "expt_amt": 811517.58,
+            "ngsup_amt": 992.93,
+            "itm_ty": "G"
+          }
+        ]
+      }
+    ],
+    "flag": "D",
+    "chksum": "AflJufPlFStqKBZ"
+  },
+  "exp": [
+    {
+      "ex_tp": "WPAY",
+      "inv": [
+        {
+          "inum": "81542",
+          "idt": "12-02-2016",
+          "val": 995048.36,
+          "sbnum": 84298,
+          "sbdt": "04-10-2016",
+          "itms": [
+            {
+              "ty": "G",
+              "hsn_sc": "S9207",
+              "txval": 9158.29,
+              "irt": 0,
+              "iamt": 0,
+              "crt": 25.64,
+              "camt": 4.51,
+              "srt": 75.99,
+              "samt": 54.33
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "expa": [
+    {
+      "ex_tp": "WOPAY",
+      "inv": [
+        {
+          "inum": "23171",
+          "idt": "19-10-2016",
+          "val": 995048.36,
+          "sbnum": 84298,
+          "sbdt": "04-10-2016",
+          "onum": "89362",
+          "odt": "02-02-2016",
+          "itms": [
+            {
+              "ty": "S",
+              "hsn_sc": "S7890",
+              "txval": 8180.35,
+              "irt": 0,
+              "iamt": 0,
+              "crt": 74.27,
+              "camt": 9615796.76,
+              "srt": 12.29,
+              "samt": 514104.12
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "hsnSac": {
+    "hsn": [
+      {
+        "ty": "S",
+        "hsn_sc": "S8223",
+        "txval": 793.86,
+        "irt": 0,
+        "iamt": 0,
+        "crt": 61.17,
+        "camt": 27634261.64,
+        "srt": 76.35,
+        "samt": 12514809.31,
+        "desc": "Gold",
+        "uqc": "Kg",
+        "qty": 10,
+        "sy": "Inter-State B2C"
+      }
+    ],
+    "flag": "D",
+    "chksum": "AflJufPlFStqKBZ"
+  },
+  "cdna": [
+    {
+      "cgstin": "20GRRHF2562D3A3",
+      "typ": "B2B",
+      "cname": "Kamath Foods Pvt.Ltd.",
+      "cdna": [
+        {
+          "ntty": "CR",
+          "nt_num": 533515,
+          "nt_dt": "23-09-2016",
+          "ont_num": 123456789,
+          "ont_dt": "23-09-2016",
+          "rsn": "NpcnLECvtrPGlBw",
+          "inum": "915914",
+          "idt": "23-09-2016",
+          "val": 5225.28,
+          "irt": 48.7,
+          "iamt": 845038.22,
+          "crt": 95.79,
+          "camt": 37661.29,
+          "srt": 68.45,
+          "samt": 42381.13
+        }
+      ]
+    }
+  ],
+  "at": [
+    {
+      "ctin": "67ABCDE7960F1Z6",
+      "cname": "R_uPkEsoGihvrvfqK",
+      "supst_cd": "12",
+      "doc_num": "ahYJkVGwrPZAlIp",
+      "doc_dt": "26-10-2016",
+      "adamt": 62782.02,
+      "itms": [
+        {
+          "ty": "S",
+          "hsn_sc": "S9043",
+          "irt": 0,
+          "iamt": 0,
+          "crt": 7.32,
+          "camt": 739657.94,
+          "srt": 8.49,
+          "samt": 1625.49
+        }
+      ]
+    }
+  ],
+  "ata": [
+    {
+      "octin": "67ABCDE7960F1Z6",
+      "ocname": "R_uPkEsoGihvrvfqK",
+      "odoc_num": "ahYJkVGwrPZAlIp",
+      "odoc_dt": "26-10-2016",
+      "ctin": "67ABCDE7960F1Z6",
+      "cname": "R_uPkEsoGihvrvfqK",
+      "supst_cd": "12",
+      "doc_num": "ahYJkVGwrPZAlIp",
+      "doc_dt": "26-10-2016",
+      "adamt": 72322.11,
+      "itms": [
+        {
+          "ty": "S",
+          "hsn_sc": "S9043",
+          "irt": 0,
+          "iamt": 0,
+          "crt": 7.32,
+          "camt": 739657.94,
+          "srt": 8.49,
+          "samt": 1625.49
+        }
+      ]
+    }
+  ],
+  "cdn": [
+    {
+      "cgstin": "20GRRHF2562D3A3",
+      "typ": "B2B",
+      "cname": "Kamath Foods Pvt.Ltd.",
+      "cdn": [
+        {
+          "ntty": "CR",
+          "nt_num": 533515,
+          "nt_dt": "23-09-2016",
+          "rsn": "NpcnLECvtrPGlBw",
+          "inum": "915914",
+          "idt": "23-09-2016",
+          "val": 5225.28,
+          "irt": 48.7,
+          "iamt": 845038.22,
+          "crt": 95.79,
+          "camt": 37661.29,
+          "srt": 68.45,
+          "samt": 42381.13
+        }
+      ]
+    }
+  ],
+  "txpd": [
+    {
+      "inum": "533515",
+      "doc_num": "533515",
+      "doc_dt": "23-09-2016",
+      "irt": 48.7,
+      "iamt": 845038.22,
+      "crt": 95.79,
+      "camt": 37661.29,
+      "srt": 68.45,
+      "samt": 42381.13
+    }
+  ],
+  "ecom_invocies": [
+    {
+      "ecom_ty": "Inter",
+      "eInvoices": [
+        {
+          "txprd": "2015-16",
+          "mid": "M13332",
+          "grsval": 1000,
+          "ctin": "20GRRHF2562D3A3",
+          "itm": [
+            {
+              "ty": "S",
+              "hsn_sc": "S8223",
+              "txval": 5225.28,
+              "sup_type": "B2B",
+              "irt": 48.7,
+              "iamt": 845038.22,
+              "crt": 95.79,
+              "camt": 37661.29,
+              "srt": 68.45,
+              "samt": 42381.13
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+ DOWNLOAD SCHEMA
+ Response Payload
+ Error Codes
+DOWNLOAD ATTRIBUTE DETAILS
+© 2016-17 GST Developer PortalSite Last Updated on 05-10-2016Developed by GSTN
+This website is best experienced on the following version (or higher) of Chrome 49, Firefox 45, Safari 5 and Internet Explorer 10 browsers

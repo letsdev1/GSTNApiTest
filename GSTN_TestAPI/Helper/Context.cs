@@ -10,8 +10,10 @@ namespace GSTN_TestAPI.Helper
     public class Context
     {
         public static string AppKey;
+        public static string AppKey_NormalEncryption;
         public static string LoggedUser;
-        public static byte[] Decipher;
+        public static byte[] DecipherBytes;
+        public static string Decipher;
         public static string AuthToken;
     }
 }

@@ -19,6 +19,17 @@ namespace GSTN_TestAPI.Helper
             }
         }
 
+        public static string SSLDomain
+        {
+            get
+            {
+                if (Constants.Sandbox == true)
+                {
+                    return @"https://devapi.gstsystem.co.in";
+                }
+            }
+        }
+
         public static string GSTR1_B2BInvoices
         {
             get

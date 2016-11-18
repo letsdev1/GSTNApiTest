@@ -21,7 +21,7 @@ namespace GSTN_TestAPI
 
 
 
-        private string HMAC_Encrypt(string message, string secret)
+        public string HMAC_Encrypt(string message, string secret)
         {
             secret = secret ?? "";
             var encoding = new System.Text.ASCIIEncoding();
@@ -33,9 +33,39 @@ namespace GSTN_TestAPI
                 return Convert.ToBase64String(hashmessage);
             }
 
-            
+
         }
 
+        public string HMAC_Encrypt(byte[] EK)
+        {
+            using (var hmacsha256 = new HMACSHA256())
+            {
+                byte[] hashmessage = hmacsha256.ComputeHash(EK);
+                return Convert.ToBase64String(hashmessage);
+            }
+        }
+
+
+
+
+        public string Encrypt(string plainText, byte[] keyBytes)
+        {
+            byte[] dataToEncrypt = UTF8Encoding.UTF8.GetBytes(plainText);
+
+            AesManaged tdes = new AesManaged();
+
+            tdes.KeySize = 256;
+            tdes.BlockSize = 128;
+            tdes.Key = keyBytes;// Encoding.ASCII.GetBytes(key);
+            tdes.Mode = CipherMode.ECB;
+            tdes.Padding = PaddingMode.PKCS7;
+
+            ICryptoTransform crypt = tdes.CreateEncryptor();
+            byte[] cipher = crypt.TransformFinalBlock(dataToEncrypt, 0, dataToEncrypt.Length);
+            tdes.Clear();
+            return Convert.ToBase64String(cipher, 0, cipher.Length);
+
+        }
 
         public string Encrypt(string plainText, string key)
         {
@@ -58,32 +88,29 @@ namespace GSTN_TestAPI
 
         public byte[] Decrypt(string encryptedText, string key)
         {
+
             byte[] dataToDecrypt = Convert.FromBase64String(encryptedText);
+            byte[] keyBytes = Encoding.ASCII.GetBytes(key);
 
-            AesManaged tdes = new AesManaged();
-
-            tdes.KeySize = 256;
-            tdes.BlockSize = 128;
-            tdes.Key = Encoding.ASCII.GetBytes(key);
-            tdes.Mode = CipherMode.ECB;
-            tdes.Padding = PaddingMode.PKCS7;
-
-            ICryptoTransform decrypt = tdes.CreateDecryptor();
-            byte[] deCipher = decrypt.TransformFinalBlock(dataToDecrypt, 0, dataToDecrypt.Length);
-            tdes.Clear();
-
-            return deCipher;
+            return Decrypt(dataToDecrypt, keyBytes);
+            
         }
 
-        public byte[] Decrypt(string encryptedText, byte [] keys)
+        public byte[] Decrypt(string encryptedText, byte[] keys)
         {
             byte[] dataToDecrypt = Convert.FromBase64String(encryptedText);
+            return Decrypt(dataToDecrypt, keys);
+        }
+
+
+
+        public byte[] Decrypt(byte[] dataToDecrypt, byte[] keys)
+        {
 
             AesManaged tdes = new AesManaged();
-
             tdes.KeySize = 256;
             tdes.BlockSize = 128;
-            tdes.Key = Encoding.ASCII.GetBytes(key);
+            tdes.Key = keys;
             tdes.Mode = CipherMode.ECB;
             tdes.Padding = PaddingMode.PKCS7;
 

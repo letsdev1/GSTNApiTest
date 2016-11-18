@@ -53,11 +53,16 @@
     <Compile Include="GSTRModules\GSTR1.cs" />
     <Compile Include="Helper\Constants.cs" />
     <Compile Include="Helper\Context.cs" />
+    <Compile Include="Helper\interfaces\IExtender.cs" />
     <Compile Include="Helper\JsonNames.cs" />
     <Compile Include="Helper\JsonParser.cs" />
     <Compile Include="Helper\Logger.cs" />
-    <Compile Include="Helper\OutputFormat\Output_Auth.cs" />
-    <Compile Include="Helper\OutputFormat\Output_OTP.cs" />
+    <Compile Include="Models\Auth.cs" />
+    <Compile Include="Models\B2BTransaction.cs" />
+    <Compile Include="Models\GSTR1Main.cs" />
+    <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\OTP.cs" />
     <Compile Include="Helper\URLs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,7 +71,10 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Helper\SampleJson.txt" />
+    <Content Include="Helper\SamplePaylodJson.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

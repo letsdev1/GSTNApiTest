@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using json = Newtonsoft.Json;
-using GSTN_TestAPI.Helper.OutputFormat;
+using GSTN_TestAPI.Models;
 
 namespace GSTN_TestAPI.Helper
 {
@@ -12,7 +12,7 @@ namespace GSTN_TestAPI.Helper
     {
         public static string ParseOTP(string response)
         {
-            var output = json.JsonConvert.DeserializeObject<Output_OTP>(response);
+            var output = json.JsonConvert.DeserializeObject<OTP>(response);
             if (output.Status_CD == "1")
             {
                 //bingo
@@ -22,7 +22,7 @@ namespace GSTN_TestAPI.Helper
                     //just 1 is fine, anything will be a OTP anyway
                 }
 
-                return output.OTP;
+                return output.OTPText;
             }
             else
             {
@@ -30,7 +30,7 @@ namespace GSTN_TestAPI.Helper
                 {
                     //since it is the Sandbox, let us just process the request for now.
                     //who knows their API is down, again :)
-                    return output.OTP;
+                    return output.OTPText;
                 }
 
                 //error do nothing
@@ -40,9 +40,9 @@ namespace GSTN_TestAPI.Helper
         }
 
 
-        public static Output_Auth ParseAuth(string response)
+        public static Auth ParseAuth(string response)
         {
-            var output = json.JsonConvert.DeserializeObject<Output_Auth>(response);
+            var output = json.JsonConvert.DeserializeObject<Auth>(response);
             return output;
         }
 

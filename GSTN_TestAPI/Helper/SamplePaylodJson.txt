@@ -1,0 +1,51 @@
+﻿{
+  "gstin": "25ABCDE1028F6Z4",
+  "fp": "062016",
+  "gt": 3782969.01,
+  "b2b": [
+    {
+      "ctin": "21ABCDE3180F8Z6",
+      "inv": [
+        {
+          "flag": "D",
+          "chksum": "AflJufPlFStqKBZ",
+          "inum": "98678",
+          "idt": "25-10-2016",
+          "val": 776522.02,
+          "pos": "01",
+          "rchrg": "N",
+          "pro_ass": "Y",
+          "itms": [
+            {
+              "num": 1,
+              "status": "A",
+              "ty": "S",
+              "hsn_sc": "S1991",
+              "txval": 6210.99,
+              "irt": 0,
+              "iamt": 0,
+              "crt": 37.4,
+              "camt": 8874614.44,
+              "srt": 33.41,
+              "samt": 5.68
+            },
+
+			{
+              "num": 2,
+              "status": "A",
+              "ty": "A",
+              "hsn_sc": "S1D91",
+              "txval": 6776.99,
+              "irt": 1,
+              "iamt": 19.00,
+              "crt": 37.4,
+              "camt": 1827162.44,
+              "srt": 33.41,
+              "samt": 5.68
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

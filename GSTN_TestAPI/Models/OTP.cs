@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace GSTN_TestAPI.Helper.OutputFormat
+using GSTN_TestAPI.Helper;
+namespace GSTN_TestAPI.Models
 {
-    public class Output_OTP
+    public class OTP
     {
 
         private string status_cd;
@@ -18,14 +18,14 @@ namespace GSTN_TestAPI.Helper.OutputFormat
         }
         private string _otp;
 
-        public Output_OTP()
+        public OTP()
         {
             if (Constants.Sandbox)
             {
                 _otp = "102030"; //random OTP id for sandbox
             }
         }
-        public string OTP
+        public string OTPText
         {
             get { return _otp; }
             set { _otp = value; }

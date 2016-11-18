@@ -1,5 +1,5 @@
 ﻿using GSTN_TestAPI.Helper;
-using GSTN_TestAPI.Helper.OutputFormat;
+using GSTN_TestAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +24,18 @@ namespace GSTN_TestAPI
         public void AuthenticationRequest(string OTP)
         {
             string result = GenericAuthenticationRequest(OTP); //OTP and Authentication is same
-            Output_Auth auth = JsonParser.ParseAuth(result);
-            byte[] decryptedKey = encryption.Decrypt(auth.SEK, Constants.appKey);
+            Auth auth = JsonParser.ParseAuth(result);
 
-            Context.Decipher = decryptedKey;
+            Context.AppKey_NormalEncryption = Convert.ToBase64String(Encoding.ASCII.GetBytes(Constants.appKey));
+
+            //string decryptedAppKey = Convert.ToBase64String(encryption.Decrypt(Context.AppKey, Constants.appKey));
+
+            byte[] keyBytes = Convert.FromBase64String(Context.AppKey_NormalEncryption);
+            byte[] decryptedKey = encryption.Decrypt(auth.SEK, keyBytes);
+
+            string tryDecipher = System.Text.Encoding.UTF8.GetString(decryptedKey);
+            Context.Decipher = tryDecipher;
+            Context.DecipherBytes = decryptedKey;
             Context.AuthToken = auth.Auth_Token;
         }
 
@@ -63,7 +71,9 @@ namespace GSTN_TestAPI
         private string GenericAuthenticationRequest(string OTP = "")
         {
             WebClient client = new WebClient();
+
             string encryptedAppKey = "";
+
             if (string.IsNullOrEmpty(Context.AppKey))
                 encryptedAppKey = encryption.EncryptTextWithPublicKey(Constants.appKey); //app key is your application key
             else
@@ -73,7 +83,6 @@ namespace GSTN_TestAPI
             
 
             string action = string.IsNullOrEmpty(OTP) ? "OTPREQUEST" : "AUTHTOKEN";
-            AesExample example = new AesExample(OTP, Context.AppKey);
             string otpJson = string.IsNullOrEmpty(OTP) ? "" : ", \"" + JsonNames.OTP + "\":\"" + encryption.Encrypt(OTP, Constants.appKey) + "\"";
 
             string requestPayload = "{\"" + JsonNames.Action + "\": \"" + action + "\"," +
@@ -83,7 +92,7 @@ namespace GSTN_TestAPI
                 "}";
 
             client.Headers[HttpRequestHeader.ContentType] = "application/json";
-            client.Headers.Add("auth-token", "8a227e0ba56042a0acdf98b3477d2c03");
+            client.Headers.Add("auth-token", "8a227e0ba56042a0acdf98b3477d2c03"); //8a227e0ba56042a0acdf98b3477d2c03
             client.Headers.Add("client-secret", "f328fe52752349c893aa93adcffed8f5");
             client.Headers.Add("clientid", "l7xx6df7496552824f15b7f4523c0a1fc114");
             client.Headers.Add("ip-usr", "12.8.91.80");

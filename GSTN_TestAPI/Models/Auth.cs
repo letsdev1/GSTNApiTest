@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GSTN_TestAPI.Helper.OutputFormat
+namespace GSTN_TestAPI.Models
 {
-    public class Output_Auth
+    public class Auth
     {
         private string auth_token;
         private string sek;

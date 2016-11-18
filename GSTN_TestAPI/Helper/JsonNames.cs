@@ -26,7 +26,11 @@ namespace GSTN_TestAPI.Helper
         public const string ActionRequired = "action_required";
         public const string GSTIN = "gstin"; //gst identification number. 
         public const string ReturnPeriod = "ret_period";
+        public const string Data = "data";
         #endregion
+
+
+        public const string HMAC = "hmac";
 
 
 
