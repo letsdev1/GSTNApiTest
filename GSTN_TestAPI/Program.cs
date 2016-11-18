@@ -8,11 +8,11 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.IO;
-using GSTN_TestAPI.Helper;
+using GSTN_API.Helper;
 using System.Security.Cryptography;
-using GSTN_TestAPI.Models;
+using GSTN_API.Models;
 
-namespace GSTN_TestAPI
+namespace GSTN_API
 {
     class Program
     {
@@ -40,7 +40,7 @@ namespace GSTN_TestAPI
 
                 //for saving invoice
 
-                string json = File.ReadAllText(@"C:\Users\Vikas\Dropbox\Projects\Ongoing\Other\GSTN\GSTNApiTest\GSTN_TestAPI\Helper\SamplePaylodJson.txt");
+                string json = File.ReadAllText(@"C:\Users\Vikas\Dropbox\Projects\Ongoing\Other\GSTN\GSTNApiTest\GSTN_API\Helper\SamplePaylodJson.txt");
                 GSTR1Main gstr1 = Newtonsoft.Json.JsonConvert.DeserializeObject<GSTR1Main>(json);
                 string payload = Newtonsoft.Json.JsonConvert.SerializeObject(gstr1);
                 //gstrModule.RetSave(payload);

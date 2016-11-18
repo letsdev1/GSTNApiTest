@@ -1,11 +1,11 @@
-﻿using GSTN_TestAPI.Helper;
+﻿using GSTN_API.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GSTN_TestAPI.Models
+namespace GSTN_API.Models
 {
     public class GSTR1Main
     {

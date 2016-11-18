@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GSTN_TestAPI
+namespace GSTN_API
 {
     public class AesExample
     {

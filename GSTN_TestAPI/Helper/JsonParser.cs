@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using json = Newtonsoft.Json;
-using GSTN_TestAPI.Models;
+using GSTN_API.Models;
 
-namespace GSTN_TestAPI.Helper
+namespace GSTN_API.Helper
 {
     public class JsonParser
     {

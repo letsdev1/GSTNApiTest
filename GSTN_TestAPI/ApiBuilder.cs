@@ -1,5 +1,5 @@
-﻿using GSTN_TestAPI.Helper;
-using GSTN_TestAPI.Models;
+﻿using GSTN_API.Helper;
+using GSTN_API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GSTN_TestAPI
+namespace GSTN_API
 {
 
 
@@ -102,10 +102,6 @@ namespace GSTN_TestAPI
             client.Headers.Add("username", Constants.testUser);
 
             
-
-
-
-
             string url = domain + Constants.URL_Authentication_TaxPayer;
             //client.Headers[HttpRequestHeader.Authorization] = "token here";
             var result = client.UploadString(url, "Post", requestPayload);

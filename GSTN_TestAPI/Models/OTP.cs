@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GSTN_TestAPI.Helper;
-namespace GSTN_TestAPI.Models
+using GSTN_API.Helper;
+namespace GSTN_API.Models
 {
     public class OTP
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GSTN_TestAPI.Helper
+namespace GSTN_API.Helper
 {
     /// <summary>
     /// All the variables to be used in Json will be here
