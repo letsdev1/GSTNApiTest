@@ -28,15 +28,14 @@ namespace GSTN_API
                 builder.AuthenticationRequest(s1);
 
                 //now GSTR Data
-                /*GSTRModules.GSTR1 gstr1 = new GSTRModules.GSTR1();
-                gstr1.PullB2bInvoices();
-                */
+                
 
                 //json parse
 
                 //for getting B2b Invoices
 
                 GSTRModules.GSTR1 gstrModule = new GSTRModules.GSTR1();
+                gstrModule.PullB2bInvoices();
                 ////WrapperB2B b2bInvoices = gstrModule.PullB2bInvoices();
 
                 //Here in B2bInvoices, the invoices would come in.
@@ -49,9 +48,6 @@ namespace GSTN_API
                 GSTR1Main gstr1 = Newtonsoft.Json.JsonConvert.DeserializeObject<GSTR1Main>(json);
                 string payload = Newtonsoft.Json.JsonConvert.SerializeObject(gstr1);
                 gstrModule.RetSave(payload);
-
-
-
 
             }
             catch (Exception ex)

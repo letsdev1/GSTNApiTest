@@ -93,14 +93,10 @@ namespace GSTN_API.GSTRModules
                     Logger.GetLogger().LogException(new Exception("Failed B2B Request. Result is : " + result));
                     return null;
                 }
-                
-                byte[] decryptREK = encryption.Decrypt(b2b.REK, Context.DecipherBytes);
-                byte[] jsonData = encryption.Decrypt(b2b.Data, decryptREK);
 
-                string json = Encoding.UTF8.GetString(jsonData);
-                byte[] decodeJson = Convert.FromBase64String(json);
+                string finalJson = Context.DecryptPayload(b2b.REK, b2b.Data);
 
-                string finalJson = Encoding.UTF8.GetString(decodeJson);
+
                 WrapperB2B b2bs = Newtonsoft.Json.JsonConvert.DeserializeObject<WrapperB2B>(finalJson);
                 return b2bs;
 
