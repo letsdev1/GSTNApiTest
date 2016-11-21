@@ -1,10 +1,10 @@
 ﻿{
-  "gstin": "25ABCDE1028F6Z4",
-  "fp": "062016",
+  "gstin": "05BDIPA7164F1ZT",
+  "fp": "052016",
   "gt": 3782969.01,
   "b2b": [
     {
-      "ctin": "21ABCDE3180F8Z6",
+      "ctin": "04AABFN9870CMZT",
       "inv": [
         {
           "flag": "D",

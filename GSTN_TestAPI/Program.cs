@@ -37,7 +37,7 @@ namespace GSTN_API
                 //for getting B2b Invoices
 
                 GSTRModules.GSTR1 gstrModule = new GSTRModules.GSTR1();
-                WrapperB2B b2bInvoices = gstrModule.PullB2bInvoices();
+                ////WrapperB2B b2bInvoices = gstrModule.PullB2bInvoices();
 
                 //Here in B2bInvoices, the invoices would come in.
 
@@ -45,16 +45,11 @@ namespace GSTN_API
 
                 //From here -- In Progress --  Dont use this code as I have not yet completed the code below this point
 
-                string json = File.ReadAllText(@"C:\Users\Vikas\Dropbox\Projects\Ongoing\Other\GSTN\GSTNApiTest\GSTN_API\Helper\SamplePaylodJson.txt");
+                string json = File.ReadAllText(@"C:\Users\Vikas\Dropbox\Projects\Ongoing\Other\GSTN\GSTNApiTest\GSTN_TestAPI\Helper\SamplePaylodJson.txt");
                 GSTR1Main gstr1 = Newtonsoft.Json.JsonConvert.DeserializeObject<GSTR1Main>(json);
                 string payload = Newtonsoft.Json.JsonConvert.SerializeObject(gstr1);
-                //gstrModule.RetSave(payload);
+                gstrModule.RetSave(payload);
 
-
-                CEncryption encryption = new CEncryption();
-
-                string encryptedAppKey = encryption.Encrypt(Constants.appKey, Constants.appKey);
-                string decryptedAppKey = System.Text.Encoding.UTF8.GetString(encryption.Decrypt(encryptedAppKey, Constants.appKey));
 
 
 

@@ -16,5 +16,17 @@ namespace GSTN_API.Helper
         public static byte[] DecipherBytes;
         public static string Decipher;
         public static string AuthToken;
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="result">The payload downloaded from the URL Request</param>
+        /// <returns></returns>
+        public static string DecryptPayload(string result)
+        {
+
+        }
+
     }
 }

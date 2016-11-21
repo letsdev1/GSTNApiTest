@@ -20,9 +20,6 @@ namespace GSTN_API
         {
             Context.LoggedUser = Constants.testUser;
             Context.AppKeyBytes = Encoding.UTF8.GetBytes(Constants.appKey); //CEncryption.CreateKey();
-
-
-
         }
 
         public void AuthenticationRequest(string OTP)
@@ -70,6 +67,8 @@ namespace GSTN_API
         /// </summary>
         /// <param name="OTP"></param>
         /// <returns></returns>
+        /// 
+
         private string GenericAuthenticationRequest(string OTP = "")
         {
             WebClient client = new WebClient();
@@ -94,7 +93,7 @@ namespace GSTN_API
                 "}";
 
             client.Headers[HttpRequestHeader.ContentType] = "application/json";
-            client.Headers.Add("auth-token", "8a227e0ba56042a0acdf98b3477d2c03"); //8a227e0ba56042a0acdf98b3477d2c03
+            client.Headers.Add("auth-token", "8a227e0ba56042a0acdf98b3477d2c03"); 
             client.Headers.Add("client-secret", "f328fe52752349c893aa93adcffed8f5");
             client.Headers.Add("clientid", "l7xx6df7496552824f15b7f4523c0a1fc114");
             client.Headers.Add("ip-usr", "12.8.91.80");

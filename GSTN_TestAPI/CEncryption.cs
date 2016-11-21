@@ -9,15 +9,20 @@ using System.Threading.Tasks;
 
 namespace GSTN_API
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CEncryption
     {
 
+        #region Generate Certificate
         public static X509Certificate2 getPublicKey()
         {
             RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
             X509Certificate2 cert2 = new X509Certificate2(@"C:\Users\Vikas\Downloads\GSTN_PublicKey.cer");
             return cert2;
         }
+
         public static X509Certificate2 getPublicKeyBase64()
         {
             RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
@@ -25,60 +30,29 @@ namespace GSTN_API
             return cert2;
         }
 
+        #endregion
 
 
-        public string HMAC_Encrypt(string message, string secret)
-        {
-            secret = secret ?? "";
-            var encoding = new System.Text.ASCIIEncoding();
-            byte[] keyByte = encoding.GetBytes(secret);
-            byte[] messageBytes = encoding.GetBytes(message);
-            using (var hmacsha256 = new HMACSHA256(keyByte))
-            {
-                byte[] hashmessage = hmacsha256.ComputeHash(messageBytes);
-                return Convert.ToBase64String(hashmessage);
-            }
-
-
-        }
-
-        public string HMAC_Encrypt(byte[] EK)
-        {
-            using (var hmacsha256 = new HMACSHA256())
-            {
-                byte[] hashmessage = hmacsha256.ComputeHash(EK);
-                return Convert.ToBase64String(hashmessage);
-            }
-        }
-
+        #region Encryption Block
 
         public string Encrypt(string plainText, byte[] keyBytes)
         {
             byte[] dataToEncrypt = UTF8Encoding.UTF8.GetBytes(plainText);
-
-            AesManaged tdes = new AesManaged();
-
-            tdes.KeySize = 256;
-            tdes.BlockSize = 128;
-            tdes.Key = keyBytes;// Encoding.ASCII.GetBytes(key);
-            tdes.Mode = CipherMode.ECB;
-            tdes.Padding = PaddingMode.PKCS7;
-
-            ICryptoTransform crypt = tdes.CreateEncryptor();
-            byte[] cipher = crypt.TransformFinalBlock(dataToEncrypt, 0, dataToEncrypt.Length);
-            tdes.Clear();
-            return Convert.ToBase64String(cipher, 0, cipher.Length);
+            return Encrypt(dataToEncrypt, keyBytes);
         }
 
         public string Encrypt(string plainText, string key)
         {
-            byte[] dataToEncrypt = UTF8Encoding.UTF8.GetBytes(plainText);
+            return Encrypt(plainText, Encoding.UTF8.GetBytes(key));
+        }
 
+        public string Encrypt(byte[] dataToEncrypt, byte[] keyBytes)
+        {
             AesManaged tdes = new AesManaged();
 
             tdes.KeySize = 256;
             tdes.BlockSize = 128;
-            tdes.Key = Encoding.UTF8.GetBytes(key);
+            tdes.Key = keyBytes;
             tdes.Mode = CipherMode.ECB;
             tdes.Padding = PaddingMode.PKCS7;
 
@@ -89,29 +63,16 @@ namespace GSTN_API
 
         }
 
+        #endregion
 
-        public byte[] Encrypt(byte[] dataToEncrypt)
-        {
-            AesManaged tdes = new AesManaged();
-            tdes.KeySize = 256;
-            tdes.BlockSize = 128;
-            tdes.Mode = CipherMode.ECB;
-            tdes.Padding = PaddingMode.PKCS7;
-            tdes.Key = new byte[256];
-            ICryptoTransform crypt = tdes.CreateEncryptor();
-            byte[] cipher = crypt.TransformFinalBlock(dataToEncrypt, 0, dataToEncrypt.Length);
 
-            return cipher;
-        }
+        #region Decryption Block
 
         public byte[] Decrypt(string encryptedText, string key)
         {
-
             byte[] dataToDecrypt = Convert.FromBase64String(encryptedText);
             byte[] keyBytes = Encoding.UTF8.GetBytes(key);
-
             return Decrypt(dataToDecrypt, keyBytes);
-            
         }
 
         public byte[] Decrypt(string encryptedText, byte[] keys)
@@ -119,8 +80,6 @@ namespace GSTN_API
             byte[] dataToDecrypt = Convert.FromBase64String(encryptedText);
             return Decrypt(dataToDecrypt, keys);
         }
-
-
 
         public byte[] Decrypt(byte[] dataToDecrypt, byte[] keys)
         {
@@ -140,23 +99,15 @@ namespace GSTN_API
         }
 
 
+        #endregion
 
+
+        #region Encryption with Public Key
 
         public string EncryptTextWithPublicKey(string input)
         {
             byte[] bytesToBeEncrypted = Encoding.UTF8.GetBytes(input);
             return EncryptTextWithPublicKey(bytesToBeEncrypted);
-            }
-
-        private static readonly byte[] Salt = new byte[] { 10, 20, 30, 40, 50, 60, 70, 80 };
-        public static byte[] CreateKey()
-        {
-
-            System.Security.Cryptography.AesCryptoServiceProvider crypto = new System.Security.Cryptography.AesCryptoServiceProvider();
-            crypto.KeySize = 256;
-            crypto.GenerateKey();
-            byte[] key = crypto.Key;
-            return key;
         }
 
         public string EncryptTextWithPublicKey(byte[] bytesToBeEncrypted)
@@ -171,7 +122,7 @@ namespace GSTN_API
         }
 
 
-
+        #endregion
 
 
 

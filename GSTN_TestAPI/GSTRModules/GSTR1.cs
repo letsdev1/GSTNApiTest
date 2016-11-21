@@ -18,37 +18,42 @@ namespace GSTN_API.GSTRModules
 
             //encrypt payload
             CEncryption encryption = new CEncryption();
-            string encryptedPayload = encryption.Encrypt(payload, Context.DecipherBytes);
+            string encryptedPayload = encryption.Encrypt(payload, Context.AppKeyBytes);
+            //string encryptedPayload = encryption.EncryptTextWithPublicKey(payload);
 
             string requestPayload = "{\"" + JsonNames.Action + "\": \"RETSAVE\"," +
                 "\"" + JsonNames.Data + "\": \"" + encryptedPayload + "\"," +
-                "\"" + JsonNames.HMAC + "\": \"" + encryption.HMAC_Encrypt(Context.DecipherBytes) + "\"" +
+                "\"" + JsonNames.GSTIN + "\": \"05BDIPA7164F1ZT\"," +
+                "\"" + JsonNames.ReturnPeriod + "\": \"052016\"" +
                 "}";
 
-
+            client.Headers[HttpRequestHeader.ContentType] = "application/json";
+            client.Headers.Add(JsonNames.GSTIN, "05BDIPA7164F1ZT");
+            client.Headers.Add(JsonNames.ReturnPeriod, "052016");
             client.Headers.Add("client-secret", "f328fe52752349c893aa93adcffed8f5");
             client.Headers.Add("clientid", "l7xx6df7496552824f15b7f4523c0a1fc114");
             client.Headers.Add("ip-usr", "12.8.91.80");
             client.Headers.Add("postman-token", "1de717e2-8768-166e-323c-e315492f79d3");
             client.Headers.Add("state-cd", "07");
             client.Headers.Add("txn", "returns");
-
-
-            client.Headers[HttpRequestHeader.ContentType] = "application/json";
             client.Headers.Add("auth-token", Context.AuthToken);
             client.Headers.Add("username", Constants.testUser);
+
             string url = URLs.GSTR1_B2BInvoices;
-            var result = client.UploadString(url, "PUT", encryptedPayload);
+            try
+            {
+                var result = client.UploadString(url, "PUT", requestPayload);
+            }
+            catch (Exception x)
+            {
+                Logger.GetLogger().LogException(x);
+            }
         }
 
         public WrapperB2B PullB2bInvoices()
         {
             WebClient client = new WebClient();
 
-            string requestPayload = "{\"" + JsonNames.Action + "\": \"" + "" + "\"," +
-                "\"" + JsonNames.AppKey + "\": \"" + "" + "\"," +
-                "\"" + JsonNames.UserName + "\": \"" + Constants.testUser + "\"" +
-                "}";
             client.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
             client.Headers.Add("client-secret", "f328fe52752349c893aa93adcffed8f5");
             client.Headers.Add("clientid", "l7xx6df7496552824f15b7f4523c0a1fc114");
