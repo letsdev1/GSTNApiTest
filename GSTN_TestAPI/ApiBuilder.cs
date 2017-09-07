@@ -93,16 +93,17 @@ namespace GSTN_API
                 "}";
 
             client.Headers[HttpRequestHeader.ContentType] = "application/json";
-            client.Headers.Add("auth-token", "8a227e0ba56042a0acdf98b3477d2c03"); 
-            client.Headers.Add("client-secret", "f328fe52752349c893aa93adcffed8f5");
-            client.Headers.Add("clientid", "l7xx6df7496552824f15b7f4523c0a1fc114");
+            client.Headers.Add("clientid", "your client id");
+            client.Headers.Add("client-secret", "your client secret");
             client.Headers.Add("ip-usr", "12.8.91.80");
-            client.Headers.Add("postman-token", "1de717e2-8768-166e-323c-e315492f79d3");
-            client.Headers.Add("state-cd", "11");
-            client.Headers.Add("txn", "returns");
-            client.Headers.Add("username", Constants.testUser);
+            client.Headers.Add("state-cd", "33");
+            client.Headers.Add("txn", "utyuh182371872");
+            client.UseDefaultCredentials = true;
+            //client.Headers.Add("username", Constants.testUser);
 
-            
+
+            //client.Headers.Add("auth-token", "8a227e0ba56042a0acdf98b3477d2c03");
+
             string url = domain + Constants.URL_Authentication_TaxPayer;
             //client.Headers[HttpRequestHeader.Authorization] = "token here";
             var result = client.UploadString(url, "Post", requestPayload);

@@ -44,10 +44,10 @@ namespace GSTN_API
 
                 //From here -- In Progress --  Dont use this code as I have not yet completed the code below this point
 
-                string json = File.ReadAllText(@"C:\Users\Vikas\Dropbox\Projects\Ongoing\Other\GSTN\GSTNApiTest\GSTN_TestAPI\Helper\SamplePaylodJson.txt");
-                GSTR1Main gstr1 = Newtonsoft.Json.JsonConvert.DeserializeObject<GSTR1Main>(json);
-                string payload = Newtonsoft.Json.JsonConvert.SerializeObject(gstr1);
-                gstrModule.RetSave(payload);
+                //string json = File.ReadAllText(@"C:\Users\Vikas\Dropbox\Projects\Ongoing\Other\GSTN\GSTNApiTest\GSTN_TestAPI\Helper\SamplePaylodJson.txt");
+                //GSTR1Main gstr1 = Newtonsoft.Json.JsonConvert.DeserializeObject<GSTR1Main>(json);
+                //string payload = Newtonsoft.Json.JsonConvert.SerializeObject(gstr1);
+                //gstrModule.RetSave(payload);
 
             }
             catch (Exception ex)

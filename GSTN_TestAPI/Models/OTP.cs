@@ -22,7 +22,7 @@ namespace GSTN_API.Models
         {
             if (Constants.Sandbox)
             {
-                _otp = "102030"; //random OTP id for sandbox
+                _otp = "575757"; //random OTP id for sandbox
             }
         }
         public string OTPText

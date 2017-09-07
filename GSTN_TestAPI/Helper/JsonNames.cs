@@ -16,7 +16,7 @@ namespace GSTN_API.Helper
 
         public const string Action = "action";
         public const string UserName = "username";
-        public const string AppKey = "appkey";
+        public const string AppKey = "app_key";
         public const string OTP = "otp";
 
         #endregion

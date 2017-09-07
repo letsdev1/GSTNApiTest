@@ -19,7 +19,7 @@ namespace GSTN_API
         public static X509Certificate2 getPublicKey()
         {
             RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
-            X509Certificate2 cert2 = new X509Certificate2(@"C:\Users\Vikas\Downloads\GSTN_PublicKey.cer");
+            X509Certificate2 cert2 = new X509Certificate2(@"C:\Users\Vikas\Downloads\GSTN_G2A_SANDBOX_UAT_public.cer");
             return cert2;
         }
 
@@ -90,11 +90,9 @@ namespace GSTN_API
             tdes.Key = keys;
             tdes.Mode = CipherMode.ECB;
             tdes.Padding = PaddingMode.PKCS7;
-
             ICryptoTransform decrypt = tdes.CreateDecryptor();
             byte[] deCipher = decrypt.TransformFinalBlock(dataToDecrypt, 0, dataToDecrypt.Length);
             tdes.Clear();
-
             return deCipher;
         }
 

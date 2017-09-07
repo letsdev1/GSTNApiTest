@@ -3,3 +3,7 @@ Select * into tblTempPO from tblPo_Open
 
 truncate table tblInventoryTemp
 truncate table tblTempPO
+
+Select * from tblTempPO
+
+Select * from tblInventoryTemp
